@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .action-btn {
+            padding: 5px 10px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .approve-btn { background-color: #4CAF50; color: white; border: none; }
+        .reject-btn { background-color: #f44336; color: white; border: none; }
+        .delete-btn { background-color: #ff9800; color: white; border: none; }
+        .logout-btn {
+            background-color: #607d8b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+
+    <h2>Pending Alumni</h2>
+    {% if pending_alumni %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            {% for alum in pending_alumni %}
+                <tr>
+                    <td>{{ alum[1] }}</td>
+                    <td>{{ alum[2] }}</td>
+                    <td>
+                        <button class="action-btn approve-btn" onclick="window.location.href='{{ url_for('admin_approve', alumni_id=alum[0]) }}'">Approve</button>
+                        <button class="action-btn reject-btn" onclick="window.location.href='{{ url_for('admin_reject', alumni_id=alum[0]) }}'">Reject</button>
+                        <button class="action-btn delete-btn" onclick="if(confirm('Are you sure you want to delete {{ alum[1] }}?')) window.location.href='{{ url_for('admin_delete_alumni', alumni_id=alum[0]) }}'">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No pending alumni.</p>
+    {% endif %}
+
+    <h2>Approved Alumni</h2>
+    {% if approved_alumni %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            {% for alum in approved_alumni %}
+                <tr>
+                    <td>{{ alum[1] }}</td>
+                    <td>{{ alum[2] }}</td>
+                    <td>
+                        <button class="action-btn delete-btn" onclick="if(confirm('Are you sure you want to delete {{ alum[1] }}?')) window.location.href='{{ url_for('admin_delete_alumni', alumni_id=alum[0]) }}'">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No approved alumni.</p>
+    {% endif %}
+
+    <h2>Students</h2>
+    {% if students %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student[1] }}</td>
+                    <td>{{ student[2] }}</td>
+                    <td>
+                        <button class="action-btn delete-btn" onclick="if(confirm('Are you sure you want to delete {{ student[1] }}?')) window.location.href='{{ url_for('admin_delete_student', student_id=student[0]) }}'">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No students.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni-Student Connect</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Alumni-Student Connect</a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/admin/login">Admin Login</a>
+                <a class="nav-link" href="/alumni/login">Alumni Login</a>
+                <a class="nav-link" href="/student/login">Student Login</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1>Welcome to Alumni-Student Connect Portal</h1>
+        <p>Connect with alumni for mentorship and career guidance.</p>
+        <a href="/alumni/register" class="btn btn-primary">Alumni Register</a>
+        <a href="/student/register" class="btn btn-primary">Student Register</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

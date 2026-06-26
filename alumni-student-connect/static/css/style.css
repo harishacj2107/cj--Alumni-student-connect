@@ -1,0 +1,17 @@
+body {
+    background-color: #f8f9fa;
+}
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.container {
+    max-width: 800px;
+}
+.table {
+    background-color: white;
+}
+.chat-box {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
